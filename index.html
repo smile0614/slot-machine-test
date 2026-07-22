@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0a0d1a" />
+    <title>ECS Slots — 5×3</title>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #070912;
+        color: #e8ecff;
+      }
+    </style>
+
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="boot" id="boot">
+      <div class="boot__logo"><span class="boot__mark">ECS</span> SLOTS</div>
+      <div class="boot__bar"><i></i></div>
+      <p class="boot__error" id="boot-error"></p>
+    </div>
+
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand__mark">ECS</span>
+          <span class="brand__name">SLOTS</span>
+        </div>
+        <div class="meters">
+          <div class="meter">
+            <span class="meter__label">Player</span>
+            <span class="meter__value" id="meter-player">—</span>
+          </div>
+          <div class="meter">
+            <span class="meter__label">Balance</span>
+            <span class="meter__value" id="meter-balance">0</span>
+          </div>
+          <div class="meter">
+            <span class="meter__label">Bet</span>
+            <span class="meter__value" id="meter-bet">0</span>
+          </div>
+          <div class="meter meter--win">
+            <span class="meter__label">Win</span>
+            <span class="meter__value" id="meter-win">0</span>
+          </div>
+        </div>
+      </header>
+
+      <main id="stage" class="stage">
+        <div class="skip-hint" id="skip-hint">tap to skip</div>
+      </main>
+
+      <footer class="controls">
+        <button class="btn btn--ghost" id="btn-paytable" type="button">Paytable</button>
+
+        <button class="btn btn--toggle" id="btn-turbo" type="button" aria-pressed="false">
+          <span class="btn__icon">⚡</span> Turbo
+        </button>
+
+        <div class="auto">
+          <select class="auto__count" id="select-auto" aria-label="Autoplay spins">
+            <option value="10">10</option>
+            <option value="25" selected>25</option>
+            <option value="50">50</option>
+            <option value="-1">∞</option>
+          </select>
+          <button class="btn btn--toggle" id="btn-auto" type="button" aria-pressed="false">Auto</button>
+        </div>
+
+        <button class="btn btn--spin" id="btn-spin" type="button">
+          <span id="btn-spin-label">SPIN</span>
+        </button>
+      </footer>
+    </div>
+
+    <div class="modal" id="modal-name">
+      <form class="modal__card" id="form-name">
+        <h1 class="modal__title">Welcome</h1>
+        <p class="modal__text">Enter your name to start the session.</p>
+        <input
+          class="modal__input"
+          id="input-name"
+          type="text"
+          maxlength="16"
+          autocomplete="off"
+          placeholder="Your name"
+          required
+        />
+        <button class="btn btn--spin modal__submit" type="submit">Play</button>
+      </form>
+    </div>
+
+    <div class="modal" id="modal-broke">
+      <div class="modal__card">
+        <h2 class="modal__title">Out of credits</h2>
+        <p class="modal__text">
+          Your balance is below the <b id="broke-bet">10</b> credit bet after
+          <b id="broke-spins">0</b> spins. Start a fresh bankroll to keep playing.
+        </p>
+        <button class="btn btn--spin modal__submit" id="btn-restart" type="button">New bankroll</button>
+      </div>
+    </div>
+
+    <div class="modal" id="modal-paytable">
+      <div class="modal__card modal__card--wide">
+        <h2 class="modal__title">Paytable</h2>
+        <div id="paytable-body"></div>
+        <button class="btn btn--ghost modal__submit" id="btn-paytable-close" type="button">Close</button>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
